@@ -40,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
       Marker(
         width: 80.0,
         height: 80.0,
-        point: LatLng(51.5, -0.09),
+        point: LatLng(-34.60638889, -58.43555556),
         child: GestureDetector(
           onTap: () {
             _showTotemPopup();
@@ -57,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
       Marker(
         width: 80.0,
         height: 80.0,
-        point: LatLng( -34.60638889, -58.43555556),
+        point: LatLng(-34.60638889, -58.43555556),
         child: GestureDetector(
           onTap: () {
             _showTotemPopup();
@@ -106,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: FlutterMap(
         options: MapOptions(
-          initialCenter: LatLng(51.5, -0.09),
+          initialCenter: LatLng(-34.61813889, -58.43327778),
           initialZoom: 13.0,
         ),
         children: [
