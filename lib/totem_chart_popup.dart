@@ -8,23 +8,33 @@ class TotemChartPopup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Totem Statistics'),
-      content: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            _buildChart('Current Charge', 75),
-            const SizedBox(height: 20),
-            _buildChart('Energy Generated', 150),
-            const SizedBox(height: 20),
-            _buildChart('Energy Consumed', 50),
-          ],
+      backgroundColor: Colors.white,
+      title: const Text(
+        'Estadísticas del Tótem',
+        style: TextStyle(color: Colors.black),
+      ),
+      content: SizedBox(
+        width: double.maxFinite,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _buildChart('Carga Actual', 75),
+              const SizedBox(height: 20),
+              _buildChart('Energía Generada', 150),
+              const SizedBox(height: 20),
+              _buildChart('Energía Consumida', 50),
+            ],
+          ),
         ),
       ),
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text('Close'),
+          child: const Text(
+            'Cerrar',
+            style: TextStyle(color: Colors.blue),
+          ),
         ),
       ],
     );
@@ -33,14 +43,17 @@ class TotemChartPopup extends StatelessWidget {
   Widget _buildChart(String title, double value) {
     return Column(
       children: [
-        Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
+        Text(
+          title,
+          style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+        ),
         const SizedBox(height: 8),
         SizedBox(
           height: 150,
           child: BarChart(
             BarChartData(
-              alignment: BarChartAlignment.spaceAround,
-              maxY: 200, // A fixed max value for comparison
+              alignment: BarChartAlignment.center,
+              maxY: 200,
               barGroups: [
                 BarChartGroupData(
                   x: 0,
@@ -48,22 +61,28 @@ class TotemChartPopup extends StatelessWidget {
                     BarChartRodData(
                       toY: value,
                       color: Colors.lightBlue,
-                      width: 30,
-                      borderRadius: BorderRadius.zero,
+                      width: 40,
+                      borderRadius: const BorderRadius.all(Radius.circular(4)),
                     ),
                   ],
                 ),
               ],
               titlesData: const FlTitlesData(
+                show: true,
                 leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
                 topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
                 bottomTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
                 rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
               ),
+              borderData: FlBorderData(show: false),
+              gridData: const FlGridData(show: false),
             ),
           ),
         ),
-        Text('$value kWh'),
+        Text(
+          '$value kWh',
+          style: const TextStyle(color: Colors.black),
+        ),
       ],
     );
   }
